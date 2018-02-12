@@ -57,9 +57,9 @@ h1 {
   text-decoration: none;
   color: #fff;
   font-family: sans-serif;
-  margin: 0 -9999rem;
-  /* add back negative margin value */
-  padding: 1em 9999rem;
+  width: 100vw;
+  padding: 1em;
+  margin: 0;
 }
 
 /**

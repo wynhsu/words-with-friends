@@ -444,7 +444,7 @@ export default class InGameView extends React.Component {
         //let userInitial = this.state.currentUser.displayName.charAt(0);
 
         return (
-            <div className='container'>
+            <div className='container p-0 m-0'>
                 <div className='row justify-content-between banner'>
                     <h1 className='pb-3 col-lg'>Words With Friendz</h1>
                     <div className='col-lg row justify-content-between mx-auto'>
