@@ -441,8 +441,6 @@ export default class InGameView extends React.Component {
         /**
          * Gets the initials of the current user to be displayed in the scoreboard
          */
-        //let userInitial = this.state.currentUser.displayName.charAt(0);
-
         return (
             <div className='container p-0 m-0'>
                 <div className='row justify-content-between banner'>
