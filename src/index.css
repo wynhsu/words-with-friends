@@ -42,15 +42,79 @@ h1 {
   font-weight: 700;
 }
 
-.tile-button {
-  height: 60px;
+@media (max-width: 576px) {
+  h1 {
+    font-size: 2em!important;
+  }
+  
+  .btn {
+    padding: 0 5px;
+  }
+
+  .container {
+    padding: 0;
+  }
+
+  .glass {
+    max-width: 45px!important;
+    max-height: 45px!important;
+    min-width: 45px!important;
+    min-height: 45px!important;
+    font-size: 20px!important;
+  }
+
+  #fixed {
+    padding: 0!important;
+  }
+
+  .tile-button {
+    min-width: 30px;
+    min-height: 30px;
+    padding: .1rem!important;
+  }
+
+  .tile {
+    border-radius: 7px!important;
+  }
+
+  .user {
+    font-size: 20px!important;
+    height: 30px!important;
+    width: 30px!important;
+  }
 }
 
 .tile {
   border: 1px solid #8fa0b3;
   border-radius: 10px;
   box-shadow: 0px 5px 4px -2px #8fa0b3 inset;
-  background: linear-gradient(#b3bbc7, #e4e6e5)
+  background: linear-gradient(#b3bbc7, #e4e6e5);
+}
+
+@media (min-width: 768px) {
+  .tile-button {
+    max-width: 50px;
+    min-width: 50px;
+    min-height: 50px;
+  }
+
+  #fixed {
+    padding: 0!important;
+    max-width: 600px;
+  }
+}
+
+@media (min-width: 992px) {
+  .tile-button {
+    max-width: 60px;
+    min-width: 60px;
+    min-height: 60px;
+  }
+
+  #fixed {
+    padding: 0!important;
+    max-width: 720px;
+  }
 }
 
 /**
@@ -89,10 +153,13 @@ h1 {
  * Style used on each individual tile
  */
 .glass {
+  max-width: 60px;
+  min-width: 60px;
+  min-height: 60px;
+
 	/* background styles */
 	position: relative;
 	display: inline-block;
-	padding: 5px 15px;
 	background-color: #f4c439;
 
 	/* text styles */
@@ -125,5 +192,4 @@ h1 {
 .glass:focus {
   background: linear-gradient(#f4c439,#f9e077);  
 }
-
 

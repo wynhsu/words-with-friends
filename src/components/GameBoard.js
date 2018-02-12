@@ -62,7 +62,7 @@ export default class InGameView extends React.Component {
     componentDidMount() {
         this.renderShuffled(true, false);
         let randomLetters = this.buildUpTiles(0);
-        this.setState({ user1Tiles: randomLetters });    
+        this.setState({ user1Tiles: randomLetters });
     }
 
     /** 
@@ -82,18 +82,18 @@ export default class InGameView extends React.Component {
              * Refills the users inventory with however many tiles they need to maintain 7
              * tiles at the beginning of each turn
              */
-            if(!resetTiles) {
+            if (!resetTiles) {
                 this.state.player1Active ? tileNumber = this.state.user1Tiles.length : tileNumber = this.state.user2Tiles.length;
             }
             let randomLetters = this.buildUpTiles(tileNumber);
             let currentTiles = undefined;
             this.state.player1Active ? currentTiles = this.state.user1Tiles : currentTiles = this.state.user2Tiles;
-            if(!resetTiles) {
+            if (!resetTiles) {
                 currentTiles = currentTiles.concat(randomLetters);
-                this.setState({ shuffledLastTurn : false});
+                this.setState({ shuffledLastTurn: false });
             } else {
                 currentTiles = randomLetters;
-                this.setState({ shuffledLastTurn : true });
+                this.setState({ shuffledLastTurn: true });
             }
             if (this.state.player1Active) {
                 this.setState({ user1Tiles: currentTiles });
@@ -111,7 +111,7 @@ export default class InGameView extends React.Component {
                 } else {
                     document.querySelector("#user2").classList.remove("yellow-text");
                     document.querySelector("#user1").classList.add("yellow-text");
-                    this.setState({remainingTurns: this.state.remainingTurns - 1});
+                    this.setState({ remainingTurns: this.state.remainingTurns - 1 });
                 }
             }
             /** 
@@ -154,12 +154,12 @@ export default class InGameView extends React.Component {
      */
     checkIfGameOver() {
         if (this.state.turnNumber === 30) {
-            if(this.state.score1 > this.state.score2) {
-                alert("Game over! " + this.state.currentUser.displayName + " won the game! Want to play another game?");                
-            } else if(this.state.score1 < this.state.score2) {
-                alert("Game over! Guest won the game! Want to play another game?");                
+            if (this.state.score1 > this.state.score2) {
+                alert("Game over! " + this.state.currentUser.displayName + " won the game! Want to play another game?");
+            } else if (this.state.score1 < this.state.score2) {
+                alert("Game over! Guest won the game! Want to play another game?");
             } else {
-                alert("Game over! The game was a tie, better luck next time! Want to play another game?");                                
+                alert("Game over! The game was a tie, better luck next time! Want to play another game?");
             }
             document.addEventListener("keydown", window.location.reload());
         }
@@ -193,7 +193,7 @@ export default class InGameView extends React.Component {
         /** 
          * Updates the state of the board after user places a tile
          */
-        if(this.state.placeTileMode) {
+        if (this.state.placeTileMode) {
             this.setState({ userTileSelected: false });
         }
         let newBoard = this.state.letterBoard;
@@ -312,8 +312,8 @@ export default class InGameView extends React.Component {
                 }
             }
         }
-        if(!wordFound) {
-            this.setState({ error: 'No valid words found' });        
+        if (!wordFound) {
+            this.setState({ error: 'No valid words found' });
         }
     }
 
@@ -446,80 +446,81 @@ export default class InGameView extends React.Component {
         return (
             <div className='container'>
                 <div className='row justify-content-between banner'>
-                    <h1>Words With Friendz</h1>
-                    <div className='d-flex'>
-                        <div className='user text-center'>{this.state.currentUser.displayName ? this.state.currentUser.displayName.charAt(0) : "U"}</div>
-                        <div id='user1' className='yellow-text'>
-                            <p>{this.state.currentUser.displayName}</p>
-                            <h5 id="score1">{this.state.score1}</h5>
+                    <h1 className='pb-3 col-lg'>Words With Friendz</h1>
+                    <div className='col-lg row justify-content-between mx-auto'>
+                        <div className='p-md-0 col-3 col-md col-lg-3 row'>
+                            <div className='user text-center'>{this.state.currentUser.displayName ? this.state.currentUser.displayName.charAt(0) : "U"}</div>
+                            <div id='user1' className='yellow-text'>
+                                <p>{this.state.currentUser.displayName}</p>
+                                <h5 id="score1">{this.state.score1}</h5>
+                            </div>
                         </div>
-                    </div>
-                    <div className='d-flex'>
-                        <div className='user text-center'>G</div>
-                        <div id='user2'>
-                            <p>Guest</p>
-                            <h5 id="score2">{this.state.score2}</h5>
+                        <div className='p-md-0 col-3 col-md col-lg-3 row'>
+                            <div className='user text-center'>G</div>
+                            <div id='user2'>
+                                <p>Guest</p>
+                                <h5 id="score2">{this.state.score2}</h5>
+                            </div>
                         </div>
-                    </div>
-                    <div>
-                        <span>Remaining Turns: {this.state.remainingTurns}</span>
-                    </div>
-                    <div>
-                        <button onClick={() => this.handleSignOut()} type='button' className='btn btn-dark'>
-                            Sign Out
+                        <div className='col-3 col-md col-lg-4'>
+                            <span>Remaining Turns: {this.state.remainingTurns}</span>
+                        </div>
+                        <div className='col-3 col-md col-lg-2'>
+                            <button onClick={() => this.handleSignOut()} type='button' className='btn btn-dark'>
+                                Sign Out
                         </button>
+                        </div>
                     </div>
+
                 </div>
                 <div className='p-3'>
-                    {(this.state.wordLastPlayed || this.state.shuffledLastTurn) 
-                    && !this.state.player1Active && !this.state.error ?
+                    {(this.state.wordLastPlayed || this.state.shuffledLastTurn)
+                        && !this.state.player1Active && !this.state.error ?
                         <Alert username={this.state.currentUser.displayName} word={this.state.wordLastPlayed} points={this.state.lastScore} shuffledLastTurn={this.state.shuffledLastTurn} /> : undefined}
-                    {(this.state.wordLastPlayed || this.state.shuffledLastTurn) 
-                    && this.state.player1Active && !this.state.error ?
+                    {(this.state.wordLastPlayed || this.state.shuffledLastTurn)
+                        && this.state.player1Active && !this.state.error ?
                         <Alert username='Guest' word={this.state.wordLastPlayed} points={this.state.lastScore} shuffledLastTurn={this.state.shuffledLastTurn} /> : undefined}
                     {this.state.error ?
                         <div className='alert alert-danger text-center mb-0'>
                             {this.state.error}
                         </div> : undefined}
                 </div>
-                <div className="container d-flex flex-wrap">
+                <div id='fixed' className="container d-flex flex-wrap">
                     {tiles}
                 </div>
                 <div className='row justify-content-center p-3'>
                     {this.state.player1Active ? this.state.user1Tiles : this.state.user2Tiles}
                 </div>
                 <div className='row justify-content-center banner'>
-                    <div className="mr-5">
+                    <div className="col text-center">
                         <button onClick={() => this.checkWord()} className='btn btn-success'>
                             Play Word
                         </button>
                     </div>
-                    <div className="mx-5 d-flex">
-                        <div className="mr-2">
-                            <button onClick={() => this.setState({
-                                placeTileMode: true,
-                                userTileSelected: false
-                            })}
-                                disabled={this.state.placeTileMode}
-                                className='btn btn-primary'>
-                                Place Tile
+                    <div className="col text-center">
+                        <button onClick={() => this.setState({
+                            placeTileMode: true,
+                            userTileSelected: false
+                        })}
+                            disabled={this.state.placeTileMode}
+                            className='btn btn-primary'>
+                            Place Tile
                             </button>
-                        </div>
-                        <div className="ml-2">
-                            <button onClick={() => this.setState({
-                                placeTileMode: false,
-                                userTileSelected: true,
-                                userLetter: undefined
-                            })}
-                                disabled={!this.state.placeTileMode}
-                                className='btn btn-danger'>
-                                Remove Tile
-                            </button>
-                        </div>
                     </div>
-                    <div className="ml-5">
-                        <button onClick={() => this.renderShuffled(true, true)} 
-                            disabled={this.state.tilesPlacedThisTurn.length !== 0} 
+                    <div className="col text-center">
+                        <button onClick={() => this.setState({
+                            placeTileMode: false,
+                            userTileSelected: true,
+                            userLetter: undefined
+                        })}
+                            disabled={!this.state.placeTileMode}
+                            className='btn btn-danger'>
+                            Remove Tile
+                            </button>
+                    </div>
+                    <div className="col text-center">
+                        <button onClick={() => this.renderShuffled(true, true)}
+                            disabled={this.state.tilesPlacedThisTurn.length !== 0}
                             className='btn btn-warning'>
                             Shuffle Letters
                         </button>
